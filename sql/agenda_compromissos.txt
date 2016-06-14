@@ -1,7 +1,10 @@
+-- Criação do banco de dados
 CREATE DATABASE agenda_compromisso;
 
+-- Inicialização do banco de dados
 USE agenda_compromisso;
 
+-- Criação das tabelas
 CREATE TABLE usuario(
 id int NOT NULL AUTO_INCREMENT,
 usuario varchar(15),
@@ -9,6 +12,7 @@ senha varchar(50),
 PRIMARY KEY (id)
 );
 
+-- Operações
 INSERT INTO usuario(usuario, senha) VALUES ('victor1', PASSWORD('1234'));
 
 SELECT * FROM usuario;
