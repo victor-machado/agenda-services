@@ -1,0 +1,20 @@
+CREATE DATABASE agenda_compromisso;
+
+USE agenda_compromisso;
+
+CREATE TABLE usuario(
+id int NOT NULL AUTO_INCREMENT,
+usuario varchar(15),
+senha varchar(50),
+PRIMARY KEY (id)
+);
+
+INSERT INTO usuario(usuario, senha) VALUES ('victor1', PASSWORD('1234'));
+
+SELECT * FROM usuario;
+
+SELECT * FROM usuario WHERE usuario = 'victor' AND senha = '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257';
+
+DELETE FROM usuario;
+
+DROP TABLE usuario;
