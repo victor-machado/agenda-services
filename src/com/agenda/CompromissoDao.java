@@ -48,7 +48,7 @@ public class CompromissoDao {
             Class.forName(AgendaUtil.MYSQL_DRIVER);
             connection = (Connection) DriverManager.getConnection(AgendaUtil.MYSQL_URL);
             
-            preparedStatement = (PreparedStatement) connection.prepareStatement("SELECT * FROM compromisso WHERE id_usuario = ?;");
+            preparedStatement = (PreparedStatement) connection.prepareStatement("SELECT * FROM compromisso WHERE id_usuario = ? AND ativo = 1;");
             preparedStatement.setInt(1, idUsuario);
             ResultSet rs = preparedStatement.executeQuery();
             
