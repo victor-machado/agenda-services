@@ -9,16 +9,41 @@ CREATE TABLE usuario(
 id int NOT NULL AUTO_INCREMENT,
 usuario varchar(15),
 senha varchar(50),
+ativo bit,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE compromisso(
+id int NOT NULL AUTO_INCREMENT,
+id_usuario int NOT NULL,
+agendamento datetime,
+dia varchar(10),
+hora varchar(5),
+descricao varchar(250),
+ativo bit,
+FOREIGN KEY (id_usuario) REFERENCES usuario(id),
 PRIMARY KEY (id)
 );
 
 -- Operacoes
-INSERT INTO usuario(usuario, senha) VALUES ('victor1', PASSWORD('1234'));
+INSERT INTO usuario(usuario, senha, ativo) VALUES ('victor1', PASSWORD('1234'), 1);
+
+INSERT INTO compromisso(id_usuario, agendamento, dia, hora, descricao, ativo) VALUES (1, '2016-6-14 21:03:00', '14/06/2016', '21:03', 'teste', 1);
 
 SELECT * FROM usuario;
 
-SELECT * FROM usuario WHERE usuario = 'victor' AND senha = '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257';
+SELECT * FROM compromisso;
+
+SELECT * FROM compromisso WHERE id_usuario = 2 AND ativo = 1;
+
+SELECT * FROM compromisso WHERE data_horario BETWEEN "2016-06-14 21:02:00" AND "2016-06-14 21:04:00" AND ativo = 1;
+
+UPDATE compromisso SET ativo = 0 WHERE id = 3;
+
+SELECT * FROM usuario WHERE usuario = 'victor' AND senha = '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257' AND ativo = 1;
 
 DELETE FROM usuario;
+
+DROP TABLE compromisso;
 
 DROP TABLE usuario;
