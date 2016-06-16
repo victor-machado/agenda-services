@@ -74,6 +74,20 @@ public class CompromissoDao {
         }
     }
     
+    public int excluiCompromisso(int id) throws Exception {
+        try {
+            Class.forName(AgendaUtil.MYSQL_DRIVER);
+            connection = (Connection) DriverManager.getConnection(AgendaUtil.MYSQL_URL);
+            
+            preparedStatement = (PreparedStatement) connection.prepareStatement("UPDATE compromisso SET ativo = 0 WHERE id = ?;");
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate();
+            
+        }finally{
+            close();
+        }
+    }
+    
     private void close(){
         try {
             if(resultSet!=null) resultSet.close();

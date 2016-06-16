@@ -55,5 +55,25 @@ public class CompromissoService {
 		return compromissos;
 	}
 	
+	@GET
+	@Path("/excluir")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public int excluirCompromisso(@QueryParam("id") String id) {
+
+		CompromissoBo bo = new CompromissoBo();
+		int resultado = -1;
+		try {
+			
+			resultado = bo.excluirCompromisso(Integer.parseInt(id));
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		return resultado;
+	}
+	
 
 }
