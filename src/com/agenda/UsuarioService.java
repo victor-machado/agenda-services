@@ -51,11 +51,5 @@ public class UsuarioService {
 		}
 		return resultado;
 	}
-	
-	private String usuarioJsonString(String usuario){
-		
-		
-		
-		return null;
-	}
+
 }

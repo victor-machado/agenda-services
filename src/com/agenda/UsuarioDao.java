@@ -36,7 +36,7 @@ public class UsuarioDao {
             Class.forName(AgendaUtil.MYSQL_DRIVER);
             connection = (Connection) DriverManager.getConnection(AgendaUtil.MYSQL_URL);
             
-            preparedStatement = (PreparedStatement) connection.prepareStatement("INSERT INTO usuario(usuario, senha) VALUES (?, ?);");
+            preparedStatement = (PreparedStatement) connection.prepareStatement("INSERT INTO usuario(usuario, senha, ativo) VALUES (?, ?, 1);");
             preparedStatement.setString(1, novoUsuario.getUsuario());
             preparedStatement.setString(2, novoUsuario.getSenha());
             
@@ -52,7 +52,7 @@ public class UsuarioDao {
             Class.forName(AgendaUtil.MYSQL_DRIVER);
             connection = (Connection) DriverManager.getConnection(AgendaUtil.MYSQL_URL);
             
-            preparedStatement = (PreparedStatement) connection.prepareStatement("SELECT * FROM usuario WHERE usuario = ? AND senha = ?;");
+            preparedStatement = (PreparedStatement) connection.prepareStatement("SELECT * FROM usuario WHERE usuario = ? AND senha = ? AND ativo = 1;");
             preparedStatement.setString(1, usuario.getUsuario());
             preparedStatement.setString(2, usuario.getSenha());
             

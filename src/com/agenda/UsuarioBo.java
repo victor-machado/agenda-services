@@ -35,17 +35,19 @@ public class UsuarioBo {
 		cadastros = dao.consultaUsuario(usuarioAutenticacao);
 		
 		boolean cadastrado = false;
+		int idUsuario = -1;
 		
 		for (int i = 0; i < cadastros.size(); i++) {
 			
 			if (usuarioAutenticacao.getUsuario().equals(cadastros.get(i).getUsuario()) && usuarioAutenticacao.getSenha().equals(cadastros.get(i).getSenha())) {
 				cadastrado = true;
+				idUsuario = cadastros.get(i).getId();
 				break;
 			}
 		}
 		
-		if ( cadastrado) {
-			return 1;
+		if (cadastrado) {
+			return idUsuario;
 		} else {
 			return -1;
 		}

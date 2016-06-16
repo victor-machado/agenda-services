@@ -1,46 +1,59 @@
 package com.agenda;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-//import com.sun.research.ws.wadl.Response;
-
-@Path("/")
+@Path("/compromissos")
 public class CompromissoService {
 
-//	@POST
-//	@Path("{usuario}")
-//    @Consumes(MediaType.APPLICATION_JSON) 
-//    @Produces("application/json")
-//	public Response criarUsuario(@QueryParam("usuario") String usuario) throws JSONException {
-//
-//		  @SuppressWarnings("unused")
-//		AgendaDao x = new AgendaDao();
-//		  try {
-////			x.criaUsuario(usuario);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		return null;
-//	}
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public int criarCompromisso(CompromissoTo compromisso) {
+
+		CompromissoBo bo = new CompromissoBo();
+		int resultado = -1;
+		try {
+			
+			resultado = bo.criarCompromisso(compromisso);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		return resultado;
+	}
+	
+	@GET
+	@Path("/")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<CompromissoTo> consultarCompromissos(@QueryParam("idUsuario") String idUsuario) {
+
+		CompromissoBo bo = new CompromissoBo();
+		ArrayList<CompromissoTo> compromissos = new ArrayList<CompromissoTo>();
+
+		try {
+			
+			compromissos = bo.consultarCompromissos(idUsuario);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return compromissos;
+	}
 	
 
 }
